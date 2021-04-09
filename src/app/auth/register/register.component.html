@@ -1,0 +1,89 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-12">
+			<div class="login-card">
+				<div class="login-main">
+					<form class="theme-form" [formGroup]="RegForm">
+						<h4>Create your account</h4>
+						<p>Enter your personal details to create account</p>
+                        <div class="form-group">
+							<label class="col-form-label">User name</label>
+							<input class="form-control" type="text" required placeholder="Full name" formControlName="username">
+							<div *ngIf="RegForm.controls.username.touched && RegForm.controls.username.errors?.required" class="text text-danger mt-1">
+                       		 username is required
+                    		</div>
+						</div>
+						<div class="form-group">
+							<label class="col-form-label">Email Address</label>
+							<input class="form-control" type="email" required placeholder="app@yourmail.com" formControlName="email">
+							<div *ngIf="RegForm.controls.email.touched && RegForm.controls.email.errors?.required" class="text text-danger mt-1">
+                       		 Email is required
+                    		</div>
+                    		<div *ngIf="RegForm.controls.email.touched && RegForm.controls.email.errors?.email"class="text text-danger mt-1">
+                       		 Invalid Email
+                   			 </div>
+						</div>
+                        <div class="form-group">
+							<label class="col-form-label">Phone Number</label>
+							<div class="row">
+                                <div class="col-md-3">
+                                    <input class="form-control mb-1" type="text" value="+ 91" required readonly> 
+                                  </div>
+                                  <div class="col-md-9">
+                                    <input class="form-control mb-1" type="number" placeholder="000-000-0000" formControlName="phone" required>
+									<div *ngIf="RegForm.controls.phone.touched && RegForm.controls.phone.errors?.required" class="text text-danger mt-1">
+										phone Number is required
+									  </div>
+                                  </div>
+                            </div>
+						</div>
+						<div class="form-group">
+							<label class="col-form-label">Password</label>
+                            <input class="form-control" [type]="show ? 'text' : 'password'"  rrequired placeholder="*********" formControlName="password">
+							<div class="show-hide" (click)="showPassword()" *ngIf="!show"><span class="show"></span></div>
+                            <div class="show-hide" (click)="showPassword()" *ngIf="show"><span class="Hide"></span></div>
+							<div *ngIf="RegForm.controls.password.touched && RegForm.controls.password.errors?.required" class="text text-danger mt-1">
+                        		Password is required
+                  			</div>
+						</div>
+                        <div class="form-group">
+							<label class="col-form-label">Confirm Password</label>
+                            <input class="form-control" [type]="confirmshow ? 'text' : 'password'"  required placeholder="*********" formControlName="confirmpassword">
+							<div class="show-hide" (click)="showConfirmPassword()" *ngIf="!confirmshow"><span class="show"></span></div>
+                            <div class="show-hide" (click)="showConfirmPassword()" *ngIf="confirmshow"><span class="Hide"></span></div>
+							<div *ngIf="RegForm.controls.confirmpassword.touched && RegForm.controls.confirmpassword.errors?.required" class="text text-danger mt-1">
+                        		Confirm Password is required
+                  			</div>
+						</div>
+						<!-- <p>Enter Questions</p>
+						<div class="form-group">
+							<label class="col-form-label">Question1</label>
+							<input class="form-control" type="text" required placeholder="Question1">
+						</div>
+						<div class="form-group">
+							<label class="col-form-label">Question2</label>
+							<input class="form-control" type="text" required placeholder="Question12">
+						</div>
+						<div class="form-group">
+							<label class="col-form-label">Question3</label>
+							<input class="form-control" type="text" required placeholder="Question3">
+						</div>
+						<div class="form-group">
+							<label class="col-form-label">Question4</label>
+							<input class="form-control" type="text" required placeholder="Question4">
+						</div>
+						<div class="form-group">
+							<label class="col-form-label">Question5</label>
+							<input class="form-control" type="text" required placeholder="Question5">
+						</div> -->
+						<div class="form-group mb-0">
+							<button type="button" class="col-12 btn btn-primary btn-block" style="margin-top:20px;" (click)="SignUp()" [disabled] ="!RegForm.valid"
+							>Create Account</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

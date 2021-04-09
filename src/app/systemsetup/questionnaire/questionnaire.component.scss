@@ -1,0 +1,11 @@
+.table-container{
+    margin-top: 20px;
+    width:700px;
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+tr i{
+    cursor: pointer;
+    color: var(--theme-deafult);
+}

@@ -1,0 +1,60 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-12">
+			<div class="login-card">
+				<div class="login-main">
+					<form class="theme-form" [formGroup]="loginForm">
+						<h4>Sign in to account</h4>
+						<p>Enter your email & password to login</p>
+						<div class="form-group">
+							<label class="col-form-label">Email or Phone number</label>
+							<div class="row">
+								<div class="col-md-3" *ngIf="showprefixnumber">
+									<input class="form-control mb-1" type="text" value="+ 91" required readonly>
+								</div>
+								  <div [ngClass]="showprefixnumber?'col-md-9':'col-md-12'">
+									<input (keyup)="test($event)" class="form-control"  type="text" required placeholder="email or phone" formControlName="email">
+									<div *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.required" class="text text-danger mt-1">
+										Email or Phone number required
+									</div>
+									<div *ngIf="loginForm.controls.email.touched && !loginForm.controls.email.errors?.required && loginForm.controls.email.errors?.invalidcontrol" class="text text-danger mt-1">
+									 Invalid Email or Phone number
+									</div>
+								  </div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-form-label">Password</label>
+                            <input class="form-control" [type]="show ? 'text' : 'password'" formControlName="password"  required placeholder="*********">
+							<div class="show-hide" (click)="showPassword()" *ngIf="!show"><span class="show"></span></div>
+                            <div class="show-hide" (click)="showPassword()" *ngIf="show"><span class="Hide"></span></div>
+							<div *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.required" class="text text-danger mt-1">
+                        		Password is required
+                  			</div>
+						</div>
+						<div class="form-group mb-0">
+							<div class="checkbox p-0">
+								<!-- <input id="checkbox1" type="checkbox"> -->
+                   			    <!-- <label class="text-muted" for="checkbox1" style="margin-left: 10px;">Remember password</label> -->
+							    <a  class="link" (click)="sendmailorphone()" style="cursor: pointer;color:#6843cf;">Forgot password?</a>   
+							</div>
+							<button type="button" class="col-12 btn btn-primary btn-block" style="margin-top:30px;" [disabled]="!loginForm.valid" (click)="onLogin()">
+								<div *ngIf="isLoadig">
+									<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  								    Loading....
+								</div>
+								<div *ngIf="!isLoadig">
+									Sigin In
+								</div>
+							</button>
+						</div>
+						<p class="mt-4 mb-0">Don't have account?
+							<a [routerLink]="'/auth/register'" class="ml-2">Create Account</a>
+						  </p>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
